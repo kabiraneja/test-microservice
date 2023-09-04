@@ -31,7 +31,7 @@ pipeline {
                 sh "ssh root@3.111.51.62 'docker stop demo-2 || true'"
                 sh "ssh root@3.111.51.62 'docker rm demo-2 || true'"
                 sh "ssh root@3.111.51.62 'docker rmi demo-2 ||true'"
-                sh "ssh root@3.111.51.62 'docker build -t demo-2 .'"
+                sh "ssh root@3.111.51.62:~/demo-2/ 'docker build -t demo-2 .'"
                 sh "ssh root@3.111.51.62 'docker run -it -d -p 9091:9091 --name demo-2 demo-2'"
             }
         }
