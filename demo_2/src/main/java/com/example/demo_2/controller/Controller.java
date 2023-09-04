@@ -29,4 +29,16 @@ public class Controller {
         return restTemplate.getForObject(url, String.class);
 
     }
+
+    @GetMapping("/getEmployees")
+    public List getEmployees() {
+
+        List emp = new ArrayList();
+        emp.add("Piyush");
+        emp.add("Mayank");
+        emp.add("Rahul");
+
+        return emp;
+
+    }
 }
