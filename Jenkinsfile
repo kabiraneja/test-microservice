@@ -58,8 +58,8 @@ pipeline {
                 sh "ssh root@3.111.51.62 'docker stop test-1 || true'"
                 sh "ssh root@3.111.51.62 'docker rm test-1 || true'"
                 sh "ssh root@3.111.51.62 'docker rmi test-1 ||true'"
-                sh "ssh root@3.111.51.62 'cd /test-1 && docker build -t test-1 /root/test-1'"
-                sh "ssh root@3.111.51.62 'cd /test-1 && docker run -it -d -p 9090:9090 --name test-1 test-1'"
+                sh "ssh root@3.111.51.62 'docker build -t test-1 /root/test-1'"
+                sh "ssh root@3.111.51.62 'docker run -it -d -p 9090:9090 --name test-1 test-1'"
             }
         }
     }
