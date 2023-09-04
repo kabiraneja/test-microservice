@@ -19,9 +19,11 @@ pipeline {
         stage('Deploy demo-2') {
             steps {
                 
-                sh "ssh root@3.111.51.62 'cd /root'"
-                sh "ssh root@3.111.51.62 'rm -rf demo-2 || true'"
-                sh "ssh root@3.111.51.62 'mkdir demo-2'"
+                sh "ssh root@3.111.51.62 'def hostDirectory = '/root/demo-2'
+'"
+                sh "ssh root@3.111.51.62 'rm -rf ${hostDirectory} || true'"
+                sh "ssh root@3.111.51.62 'mkdir ${hostDirectory}'"
+                sh "ssh root@3.111.51.62 'ls -l ${hostDirectory}'"
                 
                 // Copy the built .jar file to the EC2 instance
                 sh ' scp -i id_rsa /var/jenkins_home/workspace/test-microservice/demo_2/target/demo-2.jar root@3.111.51.62:~/demo-2/'
