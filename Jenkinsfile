@@ -19,7 +19,7 @@ pipeline {
         stage('Deploy demo-2') {
             steps {
                 
-                sh "ssh root@3.111.51.62 'def hostDirectory = '/root/demo-2'
+                sh "ssh root@3.111.51.62 'def hostDirectory = /root/demo-2'"
 '"
                 sh "ssh root@3.111.51.62 'rm -rf ${hostDirectory} || true'"
                 sh "ssh root@3.111.51.62 'mkdir ${hostDirectory}'"
