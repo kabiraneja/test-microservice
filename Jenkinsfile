@@ -16,19 +16,23 @@ pipeline {
             }
         }
 
-        // stage('Deploy demo-2') {
-        //     steps {
-        //         // Copy the built .jar file to the EC2 instance
-        //         sh ' scp -i id_rsa /var/jenkins_home/workspace/spring-mvn-pipeline/target/demo-1-build.jar root@3.111.51.62:~/'
-        //         sh ' scp -i id_rsa /var/jenkins_home/workspace/spring-mvn-pipeline/Dockerfile root@3.111.51.62:~/'
+        stage('Deploy demo-2') {
+            steps {
+                // Copy the built .jar file to the EC2 instance
+                sh ' scp -i id_rsa /var/jenkins_home/workspace/test-microservice/demo_2/target/demo-2.jar root@3.111.51.62:~/'
+                sh ' scp -i id_rsa /var/jenkins_home/workspace/test-microservice/demo_2/Dockerfile root@3.111.51.62:~/'
+
+                sh "ssh root@3.111.51.62 'cd /'"
+                sh "ssh root@3.111.51.62 'rm -rf demo-2 || true'"
+                sh "ssh root@3.111.51.62 'mkdir demo-2'"
                 
-        //         // SSH into the EC2 instance and deploy the .jar in Docker
-        //         sh "ssh root@3.111.51.62 'docker stop demo-1 || true'"
-        //         sh "ssh root@3.111.51.62 'docker rm demo-1 || true'"
-        //         sh "ssh root@3.111.51.62 'docker build -t demo-1-build .'"
-        //         sh "ssh root@3.111.51.62 'docker run -it -d -p 9091:9091 --name demo-1 demo-1-build'"
-        //     }
-        // }
+                // SSH into the EC2 instance and deploy the .jar in Docker
+                sh "ssh root@3.111.51.62 'docker stop demo-2 || true'"
+                sh "ssh root@3.111.51.62 'docker rm demo-2 || true'"
+                sh "ssh root@3.111.51.62 'docker build -t demo-2 .'"
+                sh "ssh root@3.111.51.62 'docker run -it -d -p 9091:9091 --name demo-2 demo-2'"
+            }
+        }
 
         stage('Build test-1') {
             steps {
@@ -37,18 +41,22 @@ pipeline {
             }
         }
 
-        // stage('Deploy test-1') {
-        //     steps {
-        //         // Copy the built .jar file to the EC2 instance
-        //         sh ' scp -i id_rsa /var/jenkins_home/workspace/spring-mvn-pipeline/target/demo-1-build.jar root@3.111.51.62:~/'
-        //         sh ' scp -i id_rsa /var/jenkins_home/workspace/spring-mvn-pipeline/Dockerfile root@3.111.51.62:~/'
+        stage('Deploy test-1') {
+            steps {
+                // Copy the built .jar file to the EC2 instance
+                sh ' scp -i id_rsa /var/jenkins_home/workspace/test-microservice/test-1/target/test-1.jar root@3.111.51.62:~/'
+                sh ' scp -i id_rsa /var/jenkins_home/workspace/test-microservice/test-1/Dockerfile root@3.111.51.62:~/'
+
+                sh "ssh root@3.111.51.62 'cd /'"
+                sh "ssh root@3.111.51.62 'rm -rf test-1 || true'"
+                sh "ssh root@3.111.51.62 'mkdir test-1'"
                 
-        //         // SSH into the EC2 instance and deploy the .jar in Docker
-        //         sh "ssh root@3.111.51.62 'docker stop demo-1 || true'"
-        //         sh "ssh root@3.111.51.62 'docker rm demo-1 || true'"
-        //         sh "ssh root@3.111.51.62 'docker build -t demo-1-build .'"
-        //         sh "ssh root@3.111.51.62 'docker run -it -d -p 9090:9090 --name demo-1 demo-1-build'"
-        //     }
-        // }
+                // SSH into the EC2 instance and deploy the .jar in Docker
+                sh "ssh root@3.111.51.62 'docker stop test-1 || true'"
+                sh "ssh root@3.111.51.62 'docker rm test-1 || true'"
+                sh "ssh root@3.111.51.62 'docker build -t test-1 .'"
+                sh "ssh root@3.111.51.62 'docker run -it -d -p 9090:9090 --name test-1 test-1'"
+            }
+        }
     }
 }
