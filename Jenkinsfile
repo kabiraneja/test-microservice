@@ -24,8 +24,8 @@ pipeline {
                 sh "ssh root@3.111.51.62 'mkdir demo-2'"
                 
                 // Copy the built .jar file to the EC2 instance
-                sh ' scp -i id_rsa /var/jenkins_home/workspace/test-microservice/demo_2/target/demo-2.jar root@3.111.51.62:~/root/demo-2/'
-                sh ' scp -i id_rsa /var/jenkins_home/workspace/test-microservice/demo_2/Dockerfile root@3.111.51.62:~/root/demo-2/'
+                sh ' scp -i id_rsa /var/jenkins_home/workspace/test-microservice/demo_2/target/demo-2.jar root@3.111.51.62:~/demo-2/'
+                sh ' scp -i id_rsa /var/jenkins_home/workspace/test-microservice/demo_2/Dockerfile root@3.111.51.62:~/demo-2/'
                 
                 // SSH into the EC2 instance and deploy the .jar in Docker
                 sh "ssh root@3.111.51.62 'docker stop demo-2 || true'"
@@ -51,8 +51,8 @@ pipeline {
                 sh "ssh root@3.111.51.62 'mkdir test-1'"
                 
                 // Copy the built .jar file to the EC2 instance
-                sh ' scp -i id_rsa /var/jenkins_home/workspace/test-microservice/test-1/target/test-1.jar root@3.111.51.62:~/root/test-1/'
-                sh ' scp -i id_rsa /var/jenkins_home/workspace/test-microservice/test-1/Dockerfile root@3.111.51.62:~/root/test-1/'
+                sh ' scp -i id_rsa /var/jenkins_home/workspace/test-microservice/test-1/target/test-1.jar root@3.111.51.62:~/test-1/'
+                sh ' scp -i id_rsa /var/jenkins_home/workspace/test-microservice/test-1/Dockerfile root@3.111.51.62:~/test-1/'
 
                 // SSH into the EC2 instance and deploy the .jar in Docker
                 sh "ssh root@3.111.51.62 'docker stop test-1 || true'"
