@@ -19,7 +19,7 @@ pipeline {
         stage('Deploy demo-2') {
             steps {
                 
-                sh "ssh root@3.111.51.62 'cd /'"
+                sh "ssh root@3.111.51.62 'cd /root'"
                 sh "ssh root@3.111.51.62 'rm -rf demo-2 || true'"
                 sh "ssh root@3.111.51.62 'mkdir demo-2'"
                 
@@ -46,7 +46,7 @@ pipeline {
         stage('Deploy test-1') {
             steps {
                 
-                sh "ssh root@3.111.51.62 'cd /'"
+                sh "ssh root@3.111.51.62 'cd /root'"
                 sh "ssh root@3.111.51.62 'rm -rf test-1 || true'"
                 sh "ssh root@3.111.51.62 'mkdir test-1'"
                 
