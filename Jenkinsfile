@@ -8,7 +8,7 @@ pipeline {
                 checkout scm 
             }
         }
-
+ 
         stage('Build demo-2') {
             steps {
                 // Build the Spring Boot application using Maven
