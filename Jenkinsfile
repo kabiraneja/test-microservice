@@ -80,7 +80,7 @@ pipeline {
 
                         dir(serviceName) {
                             // Build the microservice using Maven (adjust the command as needed)
-                            sh 'cd /${serviceName} && mvn clean package -DskipTests'
+                            sh 'cd /${serviceName} && ./mvnw clean package -DskipTests'
 
                             sh "ssh root@3.111.51.62 'cd /root'"
                             sh "ssh root@3.111.51.62 'rm -rf ${serviceName} || true'"
