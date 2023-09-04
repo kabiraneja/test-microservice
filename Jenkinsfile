@@ -18,10 +18,10 @@ pipeline {
 
         stage('Deploy demo-2') {
             steps {
-                
+
+                //Creating a folder for files of demo-2 microservice
                 sh "ssh root@3.111.51.62 'rm -rf /root/demo-2 || true'"
                 sh "ssh root@3.111.51.62 'mkdir /root/demo-2'"
-                sh "ssh root@3.111.51.62 'ls -l /root/demo-2'"
                 
                 // Copy the built .jar file to the EC2 instance
                 sh ' scp -i id_rsa /var/jenkins_home/workspace/test-microservice/demo_2/target/demo-2.jar root@3.111.51.62:~/demo-2/'
@@ -45,7 +45,8 @@ pipeline {
 
         stage('Deploy test-1') {
             steps {
-                
+
+                //Creating a folder for files of demo-2 microservice
                 sh "ssh root@3.111.51.62 'cd /root'"
                 sh "ssh root@3.111.51.62 'rm -rf test-1 || true'"
                 sh "ssh root@3.111.51.62 'mkdir test-1'"
